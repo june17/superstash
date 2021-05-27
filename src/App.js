@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import LandingPage from './components/LandingPage'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import React from 'react'
+import Signup from './components/Signup'
+import Signin from './components/Signin'
+import { AuthProvider } from './contexts/AuthContext'
+import Dashboard from './components/Dashboard'
+import PrivateRoute from './components/PrivateRoute'
+import Error404 from './components/Error404'
+import About from './components/About'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AuthProvider>
+          <Switch>
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/' component={LandingPage} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/signin' component={Signin} />
+            <Route exact path='/about' component={About} />
+
+            <Route path="*" component={Error404} />
+          </Switch>
+      </AuthProvider>
+      </Router>
   );
 }
 
