@@ -68,7 +68,7 @@ const posts = [
   
   export default function Example() {
     return (
-      <div className="bg-white pb-20 sm:px-6 lg:pb-28 lg:px-8">
+      <div className="bg-white pb-20 lg:pb-28 lg:px-8">
         <div className="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
           <Popover>
             {({ open }) => (

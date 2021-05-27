@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard'
 import PrivateRoute from './components/PrivateRoute'
 import Error404 from './components/Error404'
 import About from './components/About'
+import ResetPass from './components/ResetPass'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/resetpass' component={ResetPass} />
 
             <Route path="*" component={Error404} />
           </Switch>
