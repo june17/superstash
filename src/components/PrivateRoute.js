@@ -6,13 +6,12 @@ import {useAuth} from '../contexts/AuthContext'
 function PrivateRoute({component: Component, ...rest}) {
     const { currentUser } = useAuth()
 
-    console.log(currentUser)
 
     return (
         <Route
             {...rest}
             render = {props => {
-                return currentUser ? <Component {...props} /> : <Redirect to='/signin' />
+                return currentUser ? <Component {...props} u={currentUser} /> : <Redirect to='/signin' />
             }}
         />
     );

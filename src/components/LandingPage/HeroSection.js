@@ -1,7 +1,10 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState, useRef } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import {Link} from 'react-router-dom'
+import {database} from '../../firebase'
+import { v4 as uuidv4 } from 'uuid'
+import SuccessAlertDismiss from '../feedbacks/SuccessAlertDIsmiss'
 
 const navigation = [
     { name: 'Features', url: '#' },
@@ -12,6 +15,29 @@ const navigation = [
 
   
 export default function HeroSection() {
+    const [message, setMessage] = useState('')
+    const emailRef = useRef()
+
+    async function handleInviteRequest(e) {
+      e.preventDefault()
+      const userId = uuidv4()
+
+      try {
+        if(emailRef.current.value!== '') {
+          setMessage('')
+          database.ref('betausers/'+ userId).set({
+            email: emailRef.current.value
+          })
+          setMessage('Thanks for your interest')
+          emailRef.current.value = ''
+        } else {
+          setMessage('Empty email field')
+        }
+      } catch {
+        setMessage('Invalid email')
+      }
+    }
+
     return (
       <div className="relative bg-white overflow-hidden">
         <div className="hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
@@ -49,8 +75,8 @@ export default function HeroSection() {
                 >
                   <div className="flex items-center flex-1">
                     <div className="flex items-center justify-between w-full md:w-auto">
-                      <a href="#">
-                        <span className="sr-only">Workflow</span>
+                      <a>
+                        <span className="sr-only">SuperStash</span>
                         <img
                           className="h-8 w-auto sm:h-10"
                           src="https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/stash-logo.svg?alt=media&token=432f68f1-f6a9-41d7-8df4-4a0cf3a1f967"
@@ -66,7 +92,7 @@ export default function HeroSection() {
                     </div>
                     <div className="hidden md:block md:ml-10 md:space-x-10">
                       {navigation.map((item) => (
-                        <Link key={item.name} to={`${item.url}`} className="font-medium text-gray-500 hover:text-gray-900">
+                        <Link key={item.name} to={item.url} className="font-medium text-gray-500 hover:text-gray-900">
                           {item.name}
                         </Link>
                       ))}
@@ -156,15 +182,16 @@ export default function HeroSection() {
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                   <p className="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
-                  <form action="#" method="POST" className="mt-3 sm:flex">
+                  <form  action="#" method="POST" onSubmit={handleInviteRequest} className="mt-3 sm:flex">
                     <label htmlFor="email" className="sr-only">
                       Email
                     </label>
                     <input
+                      ref={emailRef}
                       type="text"
                       name="invite-email"
                       id="invite-email"
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-pink-500 focus:border-pink-500  border-gray-300  focus:shadow-outline"
                       placeholder="Enter your email"
                     />
                     <button
@@ -182,6 +209,9 @@ export default function HeroSection() {
                     .
                   </p>
                 </div>
+                {message && 
+                    <SuccessAlertDismiss message={message} />
+                  }
               </div>
               <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
                 <svg

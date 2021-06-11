@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Error404 from './components/Error404'
 import About from './components/About'
 import ResetPass from './components/ResetPass'
+import EditProfile from './components/EditProfile'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <AuthProvider>
           <Switch>
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute exact path='/editprofile' component={EditProfile} />
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
