@@ -77,7 +77,7 @@ export default function Navbar() {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                              src="https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/profile-photo.png?alt=media&token=e15c869b-b04b-40ee-87a5-00ba884c39b4"
                               alt=""
                             />
                           </Menu.Button>

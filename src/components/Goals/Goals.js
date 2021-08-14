@@ -1,20 +1,21 @@
 import React, {Fragment, useState, } from 'react';
-import {useAuth} from '../contexts/AuthContext'
+import {useAuth} from '../../contexts/AuthContext'
 import { Link, useHistory} from 'react-router-dom'
-import DashContent from './Dashboard/DashContent';
+import GoalItem from './GoalItem';
 
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
-  PlusIcon,
+  BellIcon,
   SparklesIcon,
   FolderIcon,
   HomeIcon,
-  BookOpenIcon,
   MenuAlt2Icon,
   UsersIcon,
+  BookOpenIcon,
   XIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
+
 
 const userNavigation = [
   { name: 'Your Profile', href: '/editprofile' },
@@ -23,10 +24,10 @@ const userNavigation = [
 ]
 
 const navigation = [
-  { name: 'Overview', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Overview', href: '/dashboard', icon: HomeIcon, current: false },
   { name: 'Expenses', href: '/expenses', icon: UsersIcon, current: false },
   { name: 'Accounts', href: '/accounts', icon: FolderIcon, current: false },
-  { name: 'Goals', href: '/goals', icon: SparklesIcon, current: false },
+  { name: 'Goals', href: '/goals', icon: SparklesIcon, current: true },
   { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: false },
 ]
 
@@ -34,13 +35,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
-export default function Dashboard(props) {
+export default function Goals(props) {
     const [error, setError] = useState('')
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const {currentUser, logout} = useAuth()
     
     const history = useHistory()
+    const handleModal = (e) => {
+
+    }
 
     async function handleLogout() {
         setError('')
@@ -64,7 +67,7 @@ export default function Dashboard(props) {
             open={sidebarOpen}
             onClose={setSidebarOpen}
           >
-          <Transition.Child
+            <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -73,7 +76,7 @@ export default function Dashboard(props) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
             </Transition.Child>
             <Transition.Child
               as={Fragment}
@@ -127,7 +130,7 @@ export default function Dashboard(props) {
                         <item.icon
                           className={classNames(
                             item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                            'mr-4 flex-shrink-0 h-6 w-6 '
+                            'mr-4 flex-shrink-0 h-6 w-6'
                           )}
                           aria-hidden="true"
                         />
@@ -162,7 +165,7 @@ export default function Dashboard(props) {
                       to={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                        'group rounded-md py-2 px-2 flex items-center text-sm font-medium '
+                        'group rounded-md py-2 px-2 flex items-center text-sm font-medium'
                       )}
                     >
                       <item.icon
@@ -210,10 +213,10 @@ export default function Dashboard(props) {
                 </form>
               </div>
               <div className="ml-4 flex items-center md:ml-6 ">
-                <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">  
+                <button className=" p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                   <span className="sr-only">View notifications</span>
-                  <PlusIcon className="h-6 w-6" aria-hidden="true" />
-                </Menu.Button>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
   
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
@@ -260,13 +263,16 @@ export default function Dashboard(props) {
   
           <main className="flex-1 relative overflow-y-auto focus:outline-none">
             <div className="py-6">
-              <div className="px-4 sm:px-6 md:px-0">
-                <h1 className="text-2xl font-semibold text-gray-900">Overview</h1>
+              <div className="px-4 sm:px-6 md:px-0 flex w-full justify-between">
+                <h1 className="text-2xl font-semibold text-gray-900">Goals</h1>
+                <button onClick={handleModal} className="text-base pl-4 text-pink-600">Add new</button>
               </div>
               <div className="px-4 sm:px-6 md:px-0">
                 {/* Replace with your content */}
                 <div className="py-4">
-                  <DashContent />
+                    
+                    <GoalItem />
+    
                 </div>
                 {/* /End replace */}
               </div>

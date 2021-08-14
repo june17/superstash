@@ -101,7 +101,7 @@ export default function HeroSection() {
                   <div className="hidden md:block text-right">
                     <span className="inline-flex rounded-md shadow-md ring-1 ring-black ring-opacity-5">
                       <a target='_blank'
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdx0dmdFFNIIE6CkqNPX9zeDZis8fqhG1gEDA3vAy7X-SJ4yA/viewform?usp=sf_link"
+                        href="https://tally.so/r/wMEJ8w"
                         className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-pink-600 bg-white hover:bg-gray-50"
                       >
                         Take Survey
@@ -153,7 +153,7 @@ export default function HeroSection() {
                         ))}
                       </div>
                       <a target='_blank'
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdx0dmdFFNIIE6CkqNPX9zeDZis8fqhG1gEDA3vAy7X-SJ4yA/viewform?usp=sf_link"
+                        href="https://tally.so/r/wMEJ8w"
                         className="block w-full px-5 py-3 text-center font-medium text-pink-700 bg-gray-50 hover:bg-gray-100"
                       >
                         Take Survey
@@ -173,12 +173,12 @@ export default function HeroSection() {
                     Coming soon
                   </span>
                   <span className="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">
-                    <span className="block text-gray-900">Finance & budgeting</span>
-                    <span className="block text-pink-700">made simple</span>
+                    <span className="block text-pink-700">Budgeting</span>
+                    <span className="block text-black-700">for the rest of us</span>
                   </span>
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                  Providing you with tools to take control of your money and help you become financially independent. Made for the modern-day women. 
+                  Providing you with tools to take control of your money and help you become financially independent.  
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                   <p className="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
@@ -237,24 +237,13 @@ export default function HeroSection() {
                   <rect y={72} width={640} height={640} className="text-gray-50" fill="currentColor" />
                   <rect x={118} width={404} height={784} fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
                 </svg>
-                <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                  <button
-                    type="button"
-                    className="relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                  >
-                    <span className="sr-only">Watch our video to learn more</span>
+                <div className="relative mx-auto rounded-lg shadow-lg lg:max-w-md">
+                
                     <img
-                      className="w-full"
-                      src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                      className="w-full rounded-lg"
+                      src="https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/hero-lady.png?alt=media&token=b63f7c61-e5d0-4808-bf5d-62f016393449"
                       alt=""
                     />
-                    <div className="absolute inset-0 w-full h-full flex items-center justify-center" aria-hidden="true">
-                      <svg className="h-20 w-20 text-pink-500" fill="currentColor" viewBox="0 0 84 84">
-                        <circle opacity="0.9" cx={42} cy={42} r={42} fill="white" />
-                        <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
-                      </svg>
-                    </div>
-                  </button>
                 </div>
               </div>
             </div>

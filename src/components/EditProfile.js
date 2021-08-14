@@ -6,7 +6,6 @@ function EditProfile(props) {
     return (
         <div className="min-h-screen bg-gray-100">
             <div className="max-w-2xl mx-auto px-4 pt-12 sm:px-6 lg:px-8">
-            <Breadcrumb />
             <div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 mt-4">
             <form className="space-y-1 divide-y divide-gray-200">
                 {/* card header */}
@@ -15,7 +14,7 @@ function EditProfile(props) {
                         <div>
                             <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
                             <p className="mt-1 text-sm text-gray-500">
-                            This information will be displayed publicly so be careful what you share.
+                            We use this information to personalise the experience for you.
                             </p>
                         </div>
                     </div>
@@ -102,12 +101,13 @@ function EditProfile(props) {
                     >
                         Cancel
                     </Link>
-                    <button
+                    <Link
                         type="submit"
                         className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-700 hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                        to="/selectbank"
                     >
-                        Save
-                    </button>
+                        Next
+                    </Link>
                     </div>
                 </div>
             </form>

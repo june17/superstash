@@ -1,20 +1,20 @@
 import React, {Fragment, useState, } from 'react';
-import {useAuth} from '../contexts/AuthContext'
+import {useAuth} from '../../contexts/AuthContext'
 import { Link, useHistory} from 'react-router-dom'
-import DashContent from './Dashboard/DashContent';
 
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
-  PlusIcon,
+  BellIcon,
   SparklesIcon,
   FolderIcon,
   HomeIcon,
-  BookOpenIcon,
   MenuAlt2Icon,
   UsersIcon,
   XIcon,
+  BookOpenIcon 
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
+
 
 const userNavigation = [
   { name: 'Your Profile', href: '/editprofile' },
@@ -23,19 +23,72 @@ const userNavigation = [
 ]
 
 const navigation = [
-  { name: 'Overview', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Overview', href: '/dashboard', icon: HomeIcon, current: false },
   { name: 'Expenses', href: '/expenses', icon: UsersIcon, current: false },
   { name: 'Accounts', href: '/accounts', icon: FolderIcon, current: false },
   { name: 'Goals', href: '/goals', icon: SparklesIcon, current: false },
-  { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: false },
+  { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: true },
 ]
+
+const posts = [
+    {
+      title: 'My 5 steps for better financial planning for women.',
+      href: '#',
+      category: { name: 'Youtube', href: '#' },
+      description: '',
+      date: 'Mar 16, 2020',
+      datetime: '2020-03-16',
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/learn-thumb1.png?alt=media&token=edbc9ced-11be-4264-85ed-57220054eb33',
+      readingTime: '6 min',
+      author: {
+        name: 'Ankita Chaturvedi',
+        href: '#',
+        imageUrl:
+          'https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/ankita-thumb.png?alt=media&token=16339fbe-5f7c-42fa-a400-b271fc593b3c',
+      },
+    },
+    {
+      title: 'Financial planning course for beginners.',
+      href: '#',
+      category: { name: 'Youtube', href: '#' },
+      description: '',
+      date: 'Mar 10, 2020',
+      datetime: '2020-03-10',
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/learn-thumb2.png?alt=media&token=57a31394-48bb-43a6-85f6-a8c871a80a83',
+      readingTime: '4 min',
+      author: {
+        name: 'Rachana Phadke Ranade',
+        href: '#',
+        imageUrl:
+          'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      },
+    },
+    {
+      title: '3 Golden rules of saving your money in 2021',
+      href: '#',
+      category: { name: 'Youtube', href: '#' },
+      description: '',
+      date: 'Feb 12, 2020',
+      datetime: '2020-02-12',
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/stash10.appspot.com/o/learn-thumb3.png?alt=media&token=89aef19b-459e-4447-808c-1f62d82a45c4',
+      readingTime: '11 min',
+      author: {
+        name: 'Rachana Phadke Ranade',
+        href: '#',
+        imageUrl:
+          'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      },
+    },
+  ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
-export default function Dashboard(props) {
+export default function Learn(props) {
     const [error, setError] = useState('')
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const {currentUser, logout} = useAuth()
@@ -64,7 +117,7 @@ export default function Dashboard(props) {
             open={sidebarOpen}
             onClose={setSidebarOpen}
           >
-          <Transition.Child
+            <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -73,7 +126,7 @@ export default function Dashboard(props) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
             </Transition.Child>
             <Transition.Child
               as={Fragment}
@@ -127,7 +180,7 @@ export default function Dashboard(props) {
                         <item.icon
                           className={classNames(
                             item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                            'mr-4 flex-shrink-0 h-6 w-6 '
+                            'mr-4 flex-shrink-0 h-6 w-6'
                           )}
                           aria-hidden="true"
                         />
@@ -162,7 +215,7 @@ export default function Dashboard(props) {
                       to={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                        'group rounded-md py-2 px-2 flex items-center text-sm font-medium '
+                        'group rounded-md py-2 px-2 flex items-center text-sm font-medium'
                       )}
                     >
                       <item.icon
@@ -210,13 +263,13 @@ export default function Dashboard(props) {
                 </form>
               </div>
               <div className="ml-4 flex items-center md:ml-6 ">
-                <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">  
+                <button className=" p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                   <span className="sr-only">View notifications</span>
-                  <PlusIcon className="h-6 w-6" aria-hidden="true" />
-                </Menu.Button>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
   
                 {/* Profile dropdown */}
-                <Menu as="div" className="ml-3 relative">
+                <Menu as="div" className="ml-3 relative z-30">
                   {({ open }) => (
                     <>
                       <div>
@@ -261,12 +314,51 @@ export default function Dashboard(props) {
           <main className="flex-1 relative overflow-y-auto focus:outline-none">
             <div className="py-6">
               <div className="px-4 sm:px-6 md:px-0">
-                <h1 className="text-2xl font-semibold text-gray-900">Overview</h1>
+                <h1 className="text-2xl font-semibold text-gray-900">Learn</h1>
               </div>
               <div className="px-4 sm:px-6 md:px-0">
                 {/* Replace with your content */}
-                <div className="py-4">
-                  <DashContent />
+                <div className="mt-4 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+                    {posts.map((post) => (
+                        <div key={post.title} className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                        <div className="flex-shrink-0">
+                            <img className="h-48 w-full object-cover" src={post.imageUrl} alt="" />
+                        </div>
+                        <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+                            <div className="flex-1">
+                            <p className="text-sm font-medium text-indigo-600">
+                                <a href={post.category.href} className="hover:underline">
+                                {post.category.name}
+                                </a>
+                            </p>
+                            <a href={post.href} className="block mt-2">
+                                <p className="text-xl font-semibold text-gray-900">{post.title}</p>
+                                <p className="mt-3 text-base text-gray-500">{post.description}</p>
+                            </a>
+                            </div>
+                            <div className="mt-6 flex items-center">
+                            <div className="flex-shrink-0">
+                                <a href={post.author.href}>
+                                <span className="sr-only">{post.author.name}</span>
+                                <img className="h-10 w-10 rounded-full" src={post.author.imageUrl} alt="" />
+                                </a>
+                            </div>
+                            <div className="ml-3">
+                                <p className="text-sm font-medium text-gray-900">
+                                <a href={post.author.href} className="hover:underline">
+                                    {post.author.name}
+                                </a>
+                                </p>
+                                <div className="flex space-x-1 text-sm text-gray-500">
+                                <time dateTime={post.datetime}>{post.date}</time>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>{post.readingTime} read</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    ))}
                 </div>
                 {/* /End replace */}
               </div>
